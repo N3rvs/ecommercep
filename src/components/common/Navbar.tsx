@@ -13,8 +13,8 @@ import type { NavItem } from '@/lib/types';
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   // Placeholder for authentication status and admin role
-  const isAuthenticated = false; // Replace with actual auth check
-  const isAdmin = false; // Replace with actual admin check
+  const isAuthenticated = true; // Changed for demonstration
+  const isAdmin = true; // Changed for demonstration
 
   const renderNavLinks = (items: NavItem[], closeMenu?: () => void) =>
     items.filter(item => {
