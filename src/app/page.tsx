@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -57,18 +58,16 @@ export default function HomePage() {
         <h2 className="text-3xl font-bold mb-8 text-center text-foreground">Comprar por Categoría</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
           {categoriesData.map((category) => (
-            <Link key={category.id} href={`/products?category=${category.slug}`} legacyBehavior>
-              <a className="group block">
-                <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1">
-                  <CardContent className="p-4 flex flex-col items-center text-center">
-                    {category.image && (
-                       <Image src={category.image.url} alt={category.name} width={120} height={90} className="mb-3 rounded-md object-contain h-20 w-auto" data-ai-hint={category.image.hint} />
-                    )}
-                    {category.icon && !category.image && <category.icon className="h-10 w-10 text-primary mb-3 group-hover:text-accent transition-colors" />}
-                    <h3 className="text-md font-semibold text-foreground group-hover:text-primary transition-colors">{category.name}</h3>
-                  </CardContent>
-                </Card>
-              </a>
+            <Link key={category.id} href={`/products?category=${category.slug}`} className="group block">
+              <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1">
+                <CardContent className="p-4 flex flex-col items-center text-center">
+                  {category.image && (
+                     <Image src={category.image.url} alt={category.name} width={120} height={90} className="mb-3 rounded-md object-contain h-20 w-auto" data-ai-hint={category.image.hint} />
+                  )}
+                  {category.icon && !category.image && <category.icon className="h-10 w-10 text-primary mb-3 group-hover:text-accent transition-colors" />}
+                  <h3 className="text-md font-semibold text-foreground group-hover:text-primary transition-colors">{category.name}</h3>
+                </CardContent>
+              </Card>
             </Link>
           ))}
         </div>
