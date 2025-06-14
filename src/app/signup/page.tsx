@@ -18,12 +18,12 @@ export default function SignupPage() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (password !== confirmPassword) {
-      alert("Passwords do not match!"); // Replace with a proper toast notification
+      alert("¡Las contraseñas no coinciden!"); // Replace with a proper toast notification // Changed from Passwords do not match!
       return;
     }
     setIsLoading(true);
     // Placeholder for Firebase signup logic
-    console.log('Signup attempt with:', { email, password });
+    console.log('Intento de registro con:', { email, password });
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
     setIsLoading(false);
@@ -35,22 +35,22 @@ export default function SignupPage() {
       <Card className="w-full max-w-md shadow-2xl">
         <CardHeader className="text-center">
           <Logo className="justify-center mb-2" textSize="text-2xl" />
-          <CardTitle className="text-2xl font-bold tracking-tight">创建您的账户</CardTitle>
+          <CardTitle className="text-2xl font-bold tracking-tight">Crea tu Cuenta</CardTitle>
           <CardDescription>
-            已经有账户了？{' '}
+            ¿Ya tienes una cuenta?{' '}
             <Link href="/login" className="font-medium text-primary hover:underline">
-              在此登录
+              Inicia sesión aquí
             </Link>
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="email">邮箱地址</Label>
+              <Label htmlFor="email">Correo Electrónico</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder="tu@ejemplo.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -58,7 +58,7 @@ export default function SignupPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">密码</Label>
+              <Label htmlFor="password">Contraseña</Label>
               <Input
                 id="password"
                 type="password"
@@ -69,7 +69,7 @@ export default function SignupPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">确认密码</Label>
+              <Label htmlFor="confirmPassword">Confirmar Contraseña</Label>
               <Input
                 id="confirmPassword"
                 type="password"
@@ -80,7 +80,7 @@ export default function SignupPage() {
               />
             </div>
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? '正在创建账户...' : '创建账户'}
+              {isLoading ? 'Creando cuenta...' : 'Crear Cuenta'}
             </Button>
           </form>
           <div className="relative my-6">
@@ -89,7 +89,7 @@ export default function SignupPage() {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
-                或使用其他方式注册
+                O regístrate con
               </span>
             </div>
           </div>
@@ -103,7 +103,7 @@ export default function SignupPage() {
           </div>
         </CardContent>
          <CardFooter className="text-center text-sm text-muted-foreground">
-          <p>继续操作即表示您同意我们的 <Link href="/terms" className="underline hover:text-primary">服务条款</Link> 和 <Link href="/privacy" className="underline hover:text-primary">隐私政策</Link>.</p>
+          <p>Al continuar, aceptas nuestros <Link href="/terms" className="underline hover:text-primary">Términos de Servicio</Link> y <Link href="/privacy" className="underline hover:text-primary">Política de Privacidad</Link>.</p>
         </CardFooter>
       </Card>
     </div>

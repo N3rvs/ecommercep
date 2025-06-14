@@ -16,21 +16,21 @@ export default function HomePage() {
         <div className="relative z-10 md:flex md:items-center md:justify-between">
           <div>
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl mb-6">
-              <span className="block">发现最新的</span>
-              <span className="block text-primary">电子产品</span>
+              <span className="block">Descubre lo Último en</span>
+              <span className="block text-primary">Electrónicos</span>
             </h1>
             <p className="max-w-md mx-auto md:mx-0 text-lg text-muted-foreground sm:text-xl md:max-w-2xl mb-8">
-              在 ElectroLocal 探索尖端技术。从智能手机到笔记本电脑等，我们为您提供本地最佳选择。
+              Explora tecnología de punta en ElectroLocal. Desde smartphones hasta laptops y más, te ofrecemos lo mejor de tu zona.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Button asChild size="lg" className="shadow-lg hover:shadow-primary/50 transition-shadow">
                 <Link href="/products">
-                  立即选购 <ArrowRight className="ml-2 h-5 w-5" />
+                  Comprar Ahora <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="shadow-lg hover:shadow-accent/50 transition-shadow">
                 <Link href="#featured-products">
-                  特色产品
+                  Productos Destacados
                 </Link>
               </Button>
             </div>
@@ -54,7 +54,7 @@ export default function HomePage() {
 
       {/* Featured Categories Section */}
       <section>
-        <h2 className="text-3xl font-bold mb-8 text-center text-foreground">按类别选购</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center text-foreground">Comprar por Categoría</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
           {categoriesData.map((category) => (
             <Link key={category.id} href={`/products?category=${category.slug}`} legacyBehavior>
@@ -76,28 +76,28 @@ export default function HomePage() {
       
       {/* Featured Products Section */}
       <section id="featured-products">
-        <ProductList products={featuredProducts} title="特色产品" />
+        <ProductList products={featuredProducts} title="Productos Destacados" />
       </section>
 
       {/* Why Choose Us Section */}
       <section className="py-12 bg-muted/50 dark:bg-card rounded-xl">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-10 text-foreground">为什么选择 ElectroLocal?</h2>
+          <h2 className="text-3xl font-bold text-center mb-10 text-foreground">¿Por qué Elegir ElectroLocal?</h2>
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div className="p-6">
               <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2 text-foreground">优质产品</h3>
-              <p className="text-muted-foreground">我们只提供来自顶级品牌的最新、高质量电子产品。</p>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">Productos de Calidad</h3>
+              <p className="text-muted-foreground">Ofrecemos solo los electrónicos más recientes y de alta calidad de las mejores marcas.</p>
             </div>
             <div className="p-6">
               <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2 text-foreground">本地支持</h3>
-              <p className="text-muted-foreground">享受我们本地团队友好且知识渊博的客户服务。</p>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">Soporte Local</h3>
+              <p className="text-muted-foreground">Disfruta de un servicio al cliente amigable y experto de nuestro equipo local.</p>
             </div>
             <div className="p-6">
               <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2 text-foreground">便捷购物</h3>
-              <p className="text-muted-foreground">通过本地配送和店内取货选项，轻松在线购物。</p>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">Compra Conveniente</h3>
+              <p className="text-muted-foreground">Compra en línea fácilmente con opciones de entrega local y recogida en tienda.</p>
             </div>
           </div>
         </div>

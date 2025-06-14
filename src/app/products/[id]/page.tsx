@@ -34,7 +34,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
   if (!product) {
     return (
       <div className="flex justify-center items-center min-h-[calc(100vh-200px)]">
-        <p className="text-xl text-muted-foreground">正在加载产品...</p>
+        <p className="text-xl text-muted-foreground">Cargando producto...</p>
       </div>
     );
   }
@@ -60,7 +60,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
             <div className="relative w-full aspect-square max-w-md">
               <Image
                 src={product.images[currentImageIndex].url}
-                alt={`${product.name} - Image ${currentImageIndex + 1}`}
+                alt={`${product.name} - Imagen ${currentImageIndex + 1}`}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-contain rounded-lg transition-opacity duration-300"
@@ -69,10 +69,10 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
               />
               {product.images.length > 1 && (
                 <>
-                  <Button variant="ghost" size="icon" className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/50 hover:bg-background/80" onClick={prevImage} aria-label="Previous image">
+                  <Button variant="ghost" size="icon" className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/50 hover:bg-background/80" onClick={prevImage} aria-label="Imagen anterior">
                     <ChevronLeft />
                   </Button>
-                  <Button variant="ghost" size="icon" className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/50 hover:bg-background/80" onClick={nextImage} aria-label="Next image">
+                  <Button variant="ghost" size="icon" className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/50 hover:bg-background/80" onClick={nextImage} aria-label="Siguiente imagen">
                     <ChevronRight />
                   </Button>
                 </>
@@ -85,9 +85,9 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
                     className={`w-16 h-16 rounded-md overflow-hidden border-2 transition-all ${currentImageIndex === index ? 'border-primary ring-2 ring-primary' : 'border-transparent hover:border-muted-foreground/50'}`}
-                    aria-label={`View image ${index + 1}`}
+                    aria-label={`Ver imagen ${index + 1}`}
                   >
-                    <Image src={img.url} alt={`${product.name} thumbnail ${index + 1}`} width={64} height={64} className="object-cover w-full h-full" data-ai-hint={img.hint} />
+                    <Image src={img.url} alt={`${product.name} miniatura ${index + 1}`} width={64} height={64} className="object-cover w-full h-full" data-ai-hint={img.hint} />
                   </button>
                 ))}
               </div>
@@ -103,25 +103,25 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className={`h-5 w-5 ${i < 4 ? 'text-yellow-400 fill-yellow-400' : 'text-muted-foreground/50'}`} />
               ))}
-              <span className="ml-2 text-sm text-muted-foreground">(123 条评论)</span>
+              <span className="ml-2 text-sm text-muted-foreground">(123 reseñas)</span>
             </div>
 
             <p className="text-3xl font-semibold text-primary mb-6">${product.price.toFixed(2)}</p>
             
             <div className={`flex items-center mb-4 ${product.stock > 0 ? 'text-green-500' : 'text-red-500'}`}>
               {product.stock > 0 ? <CheckCircle className="h-5 w-5 mr-2" /> : <XCircle className="h-5 w-5 mr-2" />}
-              <span>{product.stock > 0 ? `${product.stock} 件库存` : '缺货'}</span>
+              <span>{product.stock > 0 ? `${product.stock} en stock` : 'Agotado'}</span>
             </div>
 
             <p className="text-muted-foreground mb-6 leading-relaxed">{product.description}</p>
 
             {product.stock > 0 && (
               <div className="flex items-center space-x-3 mb-6">
-                <Button variant="outline" size="icon" onClick={() => handleQuantityChange(-1)} disabled={quantity <= 1} aria-label="Decrease quantity">
+                <Button variant="outline" size="icon" onClick={() => handleQuantityChange(-1)} disabled={quantity <= 1} aria-label="Disminuir cantidad">
                   -
                 </Button>
                 <span className="text-lg font-medium w-10 text-center">{quantity}</span>
-                <Button variant="outline" size="icon" onClick={() => handleQuantityChange(1)} disabled={quantity >= product.stock} aria-label="Increase quantity">
+                <Button variant="outline" size="icon" onClick={() => handleQuantityChange(1)} disabled={quantity >= product.stock} aria-label="Aumentar cantidad">
                   +
                 </Button>
               </div>
@@ -129,12 +129,12 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
 
             <Button size="lg" className="w-full md:w-auto" disabled={product.stock === 0}>
               <ShoppingCart className="mr-2 h-5 w-5" />
-              {product.stock > 0 ? '加入购物车' : '缺货'}
+              {product.stock > 0 ? 'Añadir al Carrito' : 'Agotado'}
             </Button>
             
             <div className="mt-6 space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center"><Info className="h-4 w-4 mr-2 text-primary" /> SKU: {product.id.toUpperCase()}</div>
-              <div className="flex items-center"><Info className="h-4 w-4 mr-2 text-primary" /> 类别: {product.category}</div>
+              <div className="flex items-center"><Info className="h-4 w-4 mr-2 text-primary" /> Categoría: {product.category}</div>
             </div>
           </div>
         </div>
@@ -142,16 +142,16 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
       
       <Tabs defaultValue="description" className="w-full">
         <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 max-w-lg mx-auto">
-          <TabsTrigger value="description">描述</TabsTrigger>
-          <TabsTrigger value="specifications">规格</TabsTrigger>
-          <TabsTrigger value="reviews">评论</TabsTrigger>
+          <TabsTrigger value="description">Descripción</TabsTrigger>
+          <TabsTrigger value="specifications">Especificaciones</TabsTrigger>
+          <TabsTrigger value="reviews">Reseñas</TabsTrigger>
         </TabsList>
         <TabsContent value="description" className="mt-6 p-6 border rounded-lg bg-card">
-          <h3 className="text-xl font-semibold mb-4">产品描述</h3>
+          <h3 className="text-xl font-semibold mb-4">Descripción del Producto</h3>
           <p className="text-muted-foreground whitespace-pre-line">{product.description}</p>
         </TabsContent>
         <TabsContent value="specifications" className="mt-6 p-6 border rounded-lg bg-card">
-          <h3 className="text-xl font-semibold mb-4">产品规格</h3>
+          <h3 className="text-xl font-semibold mb-4">Especificaciones del Producto</h3>
           {product.specifications ? (
             <ul className="space-y-2">
               {Object.entries(product.specifications).map(([key, value]) => (
@@ -162,12 +162,12 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
               ))}
             </ul>
           ) : (
-            <p className="text-muted-foreground">暂无规格信息。</p>
+            <p className="text-muted-foreground">No hay información de especificaciones disponible.</p>
           )}
         </TabsContent>
         <TabsContent value="reviews" className="mt-6 p-6 border rounded-lg bg-card">
-           <h3 className="text-xl font-semibold mb-4">客户评论</h3>
-           <p className="text-muted-foreground">暂无评论。</p>
+           <h3 className="text-xl font-semibold mb-4">Reseñas de Clientes</h3>
+           <p className="text-muted-foreground">Aún no hay reseñas.</p>
            {/* Placeholder for reviews UI */}
         </TabsContent>
       </Tabs>
@@ -175,7 +175,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
       {relatedProducts.length > 0 && (
         <section>
           <Separator className="my-10" />
-          <ProductList products={relatedProducts} title="相关产品" />
+          <ProductList products={relatedProducts} title="Productos Relacionados" />
         </section>
       )}
     </div>

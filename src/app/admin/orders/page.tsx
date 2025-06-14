@@ -9,21 +9,23 @@ import { MoreHorizontal, Search, Eye, Truck, CheckCircle, XCircle, Filter } from
 import type { Order } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
+import { Card } from '@/components/ui/card';
+
 
 // Mock order data
 const mockAdminOrders: Order[] = [
-  { id: 'ORD12345', userId: 'user1', items: [], totalAmount: 159.98, status: '配送中', deliveryMethod: 'Local Delivery', createdAt: new Date('2024-07-15T10:30:00Z').toISOString(), updatedAt: new Date('2024-07-15T14:00:00Z').toISOString() },
-  { id: 'ORD12346', userId: 'user2', items: [], totalAmount: 89.00, status: 'Pending', deliveryMethod: 'In-Store Pickup', createdAt: new Date('2024-07-16T11:00:00Z').toISOString(), updatedAt: new Date('2024-07-16T11:00:00Z').toISOString() },
-  { id: 'ORD12347', userId: 'user3', items: [], totalAmount: 499.50, status: '已送达', deliveryMethod: 'Local Delivery', createdAt: new Date('2024-07-14T09:20:00Z').toISOString(), updatedAt: new Date('2024-07-14T16:30:00Z').toISOString() },
-  { id: 'ORD12348', userId: 'user1', items: [], totalAmount: 25.00, status: '已取消', deliveryMethod: 'Local Delivery', createdAt: new Date('2024-07-13T18:00:00Z').toISOString(), updatedAt: new Date('2024-07-13T18:30:00Z').toISOString() },
+  { id: 'ORD12345', userId: 'user1', items: [], totalAmount: 159.98, status: 'Enviado', deliveryMethod: 'Local Delivery', createdAt: new Date('2024-07-15T10:30:00Z').toISOString(), updatedAt: new Date('2024-07-15T14:00:00Z').toISOString() },
+  { id: 'ORD12346', userId: 'user2', items: [], totalAmount: 89.00, status: 'Pendiente', deliveryMethod: 'In-Store Pickup', createdAt: new Date('2024-07-16T11:00:00Z').toISOString(), updatedAt: new Date('2024-07-16T11:00:00Z').toISOString() },
+  { id: 'ORD12347', userId: 'user3', items: [], totalAmount: 499.50, status: 'Entregado', deliveryMethod: 'Local Delivery', createdAt: new Date('2024-07-14T09:20:00Z').toISOString(), updatedAt: new Date('2024-07-14T16:30:00Z').toISOString() },
+  { id: 'ORD12348', userId: 'user1', items: [], totalAmount: 25.00, status: 'Cancelado', deliveryMethod: 'Local Delivery', createdAt: new Date('2024-07-13T18:00:00Z').toISOString(), updatedAt: new Date('2024-07-13T18:30:00Z').toISOString() },
 ];
 
 const getStatusVariant = (status: Order['status']): "default" | "secondary" | "destructive" | "outline" => {
   switch (status) {
-    case '配送中': case 'Processing': return 'default';
-    case '已送达': case 'Picked Up': return 'secondary';
-    case '已取消': return 'destructive';
-    case 'Pending': return 'outline';
+    case 'Enviado': case 'Procesando': return 'default';
+    case 'Entregado': case 'Recogido': return 'secondary';
+    case 'Cancelado': return 'destructive';
+    case 'Pendiente': return 'outline';
     default: return 'outline';
   }
 };
@@ -47,19 +49,19 @@ export default function AdminOrdersPage() {
       )
     );
     // In a real app, you'd call an API here
-    console.log(`Order ${orderId} status updated to ${newStatus}`);
+    console.log(`Pedido ${orderId} estado actualizado a ${newStatus}`);
   };
 
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold text-foreground">订单管理</h1>
+      <h1 className="text-2xl font-semibold text-foreground">Gestión de Pedidos</h1>
 
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="relative w-full md:max-w-sm">
           <Input
             type="search"
-            placeholder="搜索订单号或用户 ID..."
+            placeholder="Buscar por Nº pedido o ID de usuario..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
@@ -70,12 +72,12 @@ export default function AdminOrdersPage() {
           <DropdownMenuTrigger asChild>
             <Button variant="outline">
               <Filter className="mr-2 h-4 w-4" /> 
-              状态: {statusFilter === 'all' ? '全部' : statusFilter}
+              Estado: {statusFilter === 'all' ? 'Todos' : statusFilter}
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuCheckboxItem checked={statusFilter === 'all'} onCheckedChange={() => setStatusFilter('all')}>全部</DropdownMenuCheckboxItem>
-            {(['Pending', 'Processing', '配送中', '已送达', 'Picked Up', '已取消'] as Order['status'][]).map(status => (
+            <DropdownMenuCheckboxItem checked={statusFilter === 'all'} onCheckedChange={() => setStatusFilter('all')}>Todos</DropdownMenuCheckboxItem>
+            {(['Pendiente', 'Procesando', 'Enviado', 'Entregado', 'Recogido', 'Cancelado'] as Order['status'][]).map(status => (
               <DropdownMenuCheckboxItem key={status} checked={statusFilter === status} onCheckedChange={() => setStatusFilter(status)}>{status}</DropdownMenuCheckboxItem>
             ))}
           </DropdownMenuContent>
@@ -86,13 +88,13 @@ export default function AdminOrdersPage() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>订单号</TableHead>
-              <TableHead>用户 ID</TableHead>
-              <TableHead>日期</TableHead>
-              <TableHead>总计</TableHead>
-              <TableHead>状态</TableHead>
-              <TableHead>配送方式</TableHead>
-              <TableHead className="text-right">操作</TableHead>
+              <TableHead>Nº Pedido</TableHead>
+              <TableHead>ID Usuario</TableHead>
+              <TableHead>Fecha</TableHead>
+              <TableHead>Total</TableHead>
+              <TableHead>Estado</TableHead>
+              <TableHead>Método Entrega</TableHead>
+              <TableHead className="text-right">Acciones</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -119,20 +121,20 @@ export default function AdminOrdersPage() {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuItem asChild>
-                         <Link href={`/admin/orders/${order.id}`} className="flex items-center w-full"><Eye className="mr-2 h-4 w-4" /> 查看详情</Link>
+                         <Link href={`/admin/orders/${order.id}`} className="flex items-center w-full"><Eye className="mr-2 h-4 w-4" /> Ver Detalles</Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem onClick={() => handleUpdateStatus(order.id, 'Processing')}>
-                        <CheckCircle className="mr-2 h-4 w-4" /> 标记为处理中
+                      <DropdownMenuItem onClick={() => handleUpdateStatus(order.id, 'Procesando')}>
+                        <CheckCircle className="mr-2 h-4 w-4" /> Marcar como Procesando
                       </DropdownMenuItem>
-                       <DropdownMenuItem onClick={() => handleUpdateStatus(order.id, '配送中')}>
-                        <Truck className="mr-2 h-4 w-4" /> 标记为已发货
+                       <DropdownMenuItem onClick={() => handleUpdateStatus(order.id, 'Enviado')}>
+                        <Truck className="mr-2 h-4 w-4" /> Marcar como Enviado
                       </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => handleUpdateStatus(order.id, order.deliveryMethod === 'Local Delivery' ? '已送达' : 'Picked Up')}>
-                        <CheckCircle className="mr-2 h-4 w-4" /> 标记为已完成
+                      <DropdownMenuItem onClick={() => handleUpdateStatus(order.id, order.deliveryMethod === 'Local Delivery' ? 'Entregado' : 'Recogido')}>
+                        <CheckCircle className="mr-2 h-4 w-4" /> Marcar como Completado
                       </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => handleUpdateStatus(order.id, '已取消')} className="text-destructive focus:text-destructive focus:bg-destructive/10">
-                        <XCircle className="mr-2 h-4 w-4" /> 取消订单
+                      <DropdownMenuItem onClick={() => handleUpdateStatus(order.id, 'Cancelado')} className="text-destructive focus:text-destructive focus:bg-destructive/10">
+                        <XCircle className="mr-2 h-4 w-4" /> Cancelar Pedido
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -141,7 +143,7 @@ export default function AdminOrdersPage() {
             )) : (
               <TableRow>
                 <TableCell colSpan={7} className="h-24 text-center">
-                  未找到订单。
+                  No se encontraron pedidos.
                 </TableCell>
               </TableRow>
             )}

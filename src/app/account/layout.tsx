@@ -7,12 +7,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import { User, ListOrdered, Heart, Settings, LogOut, CreditCard, MapPin } from 'lucide-react';
 
 const sidebarNavItems = [
-  { title: '账户概览', href: '/account', icon: User },
-  { title: '我的订单', href: '/account/orders', icon: ListOrdered },
-  { title: '地址管理', href: '/account/addresses', icon: MapPin },
-  { title: '支付方式', href: '/account/payment-methods', icon: CreditCard },
-  { title: '愿望清单', href: '/account/wishlist', icon: Heart },
-  { title: '账户设置', href: '/account/settings', icon: Settings },
+  { title: 'Resumen de Cuenta', href: '/account', icon: User },
+  { title: 'Mis Pedidos', href: '/account/orders', icon: ListOrdered },
+  { title: 'Direcciones', href: '/account/addresses', icon: MapPin },
+  { title: 'Métodos de Pago', href: '/account/payment-methods', icon: CreditCard },
+  { title: 'Lista de Deseos', href: '/account/wishlist', icon: Heart },
+  { title: 'Configuración de Cuenta', href: '/account/settings', icon: Settings },
 ];
 
 export default function AccountLayout({ children }: { children: React.ReactNode }) {
@@ -21,7 +21,7 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
 
   // if (!user) { // Placeholder for redirecting if not authenticated
   //   // redirect('/login'); 
-  //   return <p>Loading or redirecting...</p>;
+  //   return <p>Cargando o redirigiendo...</p>;
   // }
 
   return (
@@ -35,7 +35,7 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
                 <User className="h-6 w-6 text-muted-foreground" />
               </div>
               <div>
-                <p className="font-semibold text-foreground">用户名</p> 
+                <p className="font-semibold text-foreground">Nombre de Usuario</p> 
                 <p className="text-sm text-muted-foreground">user@example.com</p>
               </div>
             </div>
@@ -60,7 +60,7 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
                 // onClick={logout} // Placeholder
               >
                 <LogOut className="mr-3 h-5 w-5" />
-                退出登录
+                Cerrar Sesión
               </Button>
             </nav>
           </CardContent>

@@ -48,10 +48,10 @@ export default function CartPage() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-300px)] text-center">
         <ShoppingBag className="h-24 w-24 text-muted-foreground mb-6" />
-        <h1 className="text-3xl font-bold text-foreground mb-3">您的购物车是空的</h1>
-        <p className="text-muted-foreground mb-6">看起来您还没有添加任何商品。</p>
+        <h1 className="text-3xl font-bold text-foreground mb-3">Tu carrito está vacío</h1>
+        <p className="text-muted-foreground mb-6">Parece que aún no has añadido ningún artículo.</p>
         <Button asChild size="lg">
-          <Link href="/products">开始购物</Link>
+          <Link href="/products">Empezar a Comprar</Link>
         </Button>
       </div>
     );
@@ -59,7 +59,7 @@ export default function CartPage() {
 
   return (
     <div className="space-y-8">
-      <h1 className="text-4xl font-bold text-foreground">您的购物车</h1>
+      <h1 className="text-4xl font-bold text-foreground">Tu Carrito de Compras</h1>
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Cart Items List */}
         <div className="lg:col-span-2 space-y-6">
@@ -79,7 +79,7 @@ export default function CartPage() {
                 <Link href={`/products/${item.product.id}`}>
                   <h2 className="text-lg font-semibold text-foreground hover:text-primary transition-colors">{item.product.name}</h2>
                 </Link>
-                <p className="text-sm text-muted-foreground">单价: ${item.product.price.toFixed(2)}</p>
+                <p className="text-sm text-muted-foreground">Precio unitario: ${item.product.price.toFixed(2)}</p>
               </div>
               <div className="flex items-center space-x-2 mt-2 sm:mt-0">
                 <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => handleQuantityChange(item.product.id, item.quantity - 1)} disabled={item.quantity <=1}>-</Button>
@@ -89,12 +89,12 @@ export default function CartPage() {
                   onChange={(e) => handleQuantityChange(item.product.id, parseInt(e.target.value))}
                   min="1"
                   className="h-8 w-14 text-center px-1"
-                  aria-label={`Quantity for ${item.product.name}`}
+                  aria-label={`Cantidad para ${item.product.name}`}
                 />
                 <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => handleQuantityChange(item.product.id, item.quantity + 1)}>+</Button>
               </div>
               <p className="text-md font-semibold text-foreground w-20 text-right mt-2 sm:mt-0">${(item.product.price * item.quantity).toFixed(2)}</p>
-              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-destructive" onClick={() => handleRemoveItem(item.product.id)} aria-label={`Remove ${item.product.name} from cart`}>
+              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-destructive" onClick={() => handleRemoveItem(item.product.id)} aria-label={`Eliminar ${item.product.name} del carrito`}>
                 <Trash2 className="h-5 w-5" />
               </Button>
             </Card>
@@ -105,31 +105,31 @@ export default function CartPage() {
         <div className="lg:col-span-1">
           <Card className="p-6 shadow-lg sticky top-24">
             <CardHeader className="p-0 mb-6">
-              <CardTitle className="text-2xl font-semibold">订单摘要</CardTitle>
+              <CardTitle className="text-2xl font-semibold">Resumen del Pedido</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 p-0">
               <div className="flex justify-between text-muted-foreground">
-                <span>小计</span>
+                <span>Subtotal</span>
                 <span>${subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-muted-foreground">
-                <span>运费</span>
+                <span>Envío</span>
                 <span>${shippingCost.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-muted-foreground">
-                <span>税费 ({(taxRate * 100).toFixed(0)}%)</span>
+                <span>Impuestos ({(taxRate * 100).toFixed(0)}%)</span>
                 <span>${taxAmount.toFixed(2)}</span>
               </div>
               <Separator />
               <div className="flex justify-between text-xl font-bold text-foreground">
-                <span>总计</span>
+                <span>Total</span>
                 <span>${totalAmount.toFixed(2)}</span>
               </div>
             </CardContent>
             <CardFooter className="mt-6 p-0">
               <Button asChild size="lg" className="w-full">
                 <Link href="/checkout">
-                  <CreditCard className="mr-2 h-5 w-5" /> 继续结账
+                  <CreditCard className="mr-2 h-5 w-5" /> Continuar al Pago
                 </Link>
               </Button>
             </CardFooter>

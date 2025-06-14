@@ -12,7 +12,7 @@ export default function Footer() {
           <div>
             <Logo textSize="text-2xl" />
             <p className="mt-2 text-sm text-muted-foreground">
-              您本地最新的电子产品中心。
+              Tu centro local para los últimos electrónicos.
             </p>
             <div className="flex space-x-4 mt-4">
               <Link href="#" aria-label="Github" className="text-muted-foreground hover:text-primary transition-colors">
@@ -21,36 +21,36 @@ export default function Footer() {
               <Link href="#" aria-label="Twitter" className="text-muted-foreground hover:text-primary transition-colors">
                 <Twitter size={20} />
               </Link>
-              <Link href="mailto:support@electrolocal.com" aria-label="Email Support" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link href="mailto:support@electrolocal.com" aria-label="Soporte por Correo" className="text-muted-foreground hover:text-primary transition-colors">
                 <Mail size={20} />
               </Link>
             </div>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase">商店</h3>
+            <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase">Tienda</h3>
             <ul className="mt-4 space-y-2">
-              <li><Link href="/products" className="text-sm text-muted-foreground hover:text-primary transition-colors">所有产品</Link></li>
-              <li><Link href="/products?category=smartphones" className="text-sm text-muted-foreground hover:text-primary transition-colors">智能手机</Link></li>
-              <li><Link href="/products?category=laptops" className="text-sm text-muted-foreground hover:text-primary transition-colors">笔记本电脑</Link></li>
-              <li><Link href="/products?category=audio" className="text-sm text-muted-foreground hover:text-primary transition-colors">音频设备</Link></li>
+              <li><Link href="/products" className="text-sm text-muted-foreground hover:text-primary transition-colors">Todos los Productos</Link></li>
+              <li><Link href="/products?category=smartphones" className="text-sm text-muted-foreground hover:text-primary transition-colors">Smartphones</Link></li>
+              <li><Link href="/products?category=laptops" className="text-sm text-muted-foreground hover:text-primary transition-colors">Laptops</Link></li>
+              <li><Link href="/products?category=audio" className="text-sm text-muted-foreground hover:text-primary transition-colors">Dispositivos de Audio</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase">客户服务</h3>
+            <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase">Servicio al Cliente</h3>
             <ul className="mt-4 space-y-2">
-              <li><Link href="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">联系我们</Link></li>
-              <li><Link href="/faq" className="text-sm text-muted-foreground hover:text-primary transition-colors">常见问题</Link></li>
-              <li><Link href="/shipping" className="text-sm text-muted-foreground hover:text-primary transition-colors">配送信息</Link></li>
-              <li><Link href="/returns" className="text-sm text-muted-foreground hover:text-primary transition-colors">退货政策</Link></li>
+              <li><Link href="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contáctanos</Link></li>
+              <li><Link href="/faq" className="text-sm text-muted-foreground hover:text-primary transition-colors">Preguntas Frecuentes</Link></li>
+              <li><Link href="/shipping" className="text-sm text-muted-foreground hover:text-primary transition-colors">Información de Envío</Link></li>
+              <li><Link href="/returns" className="text-sm text-muted-foreground hover:text-primary transition-colors">Política de Devoluciones</Link></li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 border-t border-border/40 pt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            &copy; {currentYear} ElectroLocal. 保留所有权利.
+            &copy; {currentYear} ElectroLocal. Todos los derechos reservados.
           </p>
         </div>
       </div>

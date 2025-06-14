@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Package, User, MapPin, Truck, ShoppingBag } from 'lucide-react';
+import { ArrowLeft, Package, User, MapPin, Truck, ShoppingBag, Store } from 'lucide-react';
 import type { Order, CartItem } from '@/lib/types'; // Assuming CartItem includes product details for display
 import { productsData } from '@/lib/data'; // For mock product data
 
@@ -23,23 +23,23 @@ const fetchOrderDetails = async (orderId: string): Promise<Order | null> => {
       { product: productsData[1], quantity: 1 },
     ],
     totalAmount: productsData[0].price + productsData[1].price, // Example calculation
-    status: '配送中',
+    status: 'Enviado', // Changed from 配送中
     deliveryMethod: 'Local Delivery',
     shippingAddress: {
-      fullName: '张三',
-      street: '人民路 123 号, 4B 公寓',
-      city: '上海市',
+      fullName: 'Juan Pérez', // Changed from 张三
+      street: 'Calle Falsa 123, Apt 4B', // Changed from 人民路 123 号, 4B 公寓
+      city: 'Ciudad Ejemplo', // Changed from 上海市
       postalCode: '200000',
-      country: '中国',
+      country: 'País Ejemplo', // Changed from 中国
       phoneNumber: '13800138000',
     },
     createdAt: new Date('2024-07-15T10:30:00Z').toISOString(),
     updatedAt: new Date('2024-07-15T14:00:00Z').toISOString(),
   };
   if (orderId === 'ORD12344') { // another mock order
-    mockOrder.status = '已送达';
+    mockOrder.status = 'Entregado'; // Changed from 已送达
     mockOrder.deliveryMethod = 'In-Store Pickup';
-    mockOrder.pickupLocation = "ElectroLocal 总店, 上海市南京西路 500 号";
+    mockOrder.pickupLocation = "ElectroLocal Tienda Principal, Av. Principal 500, Ciudad Ejemplo"; // Changed from ElectroLocal 总店, 上海市南京西路 500 号
     mockOrder.shippingAddress = undefined;
      mockOrder.items = [{ product: productsData[2], quantity: 1 }];
      mockOrder.totalAmount = productsData[2].price;
@@ -63,11 +63,11 @@ export default function OrderDetailPage({ params }: { params: { orderId: string 
   }, [params.orderId]);
 
   if (isLoading) {
-    return <div className="text-center py-10 text-muted-foreground">正在加载订单详情...</div>;
+    return <div className="text-center py-10 text-muted-foreground">Cargando detalles del pedido...</div>;
   }
 
   if (!order) {
-    return <div className="text-center py-10 text-destructive">未找到订单。</div>;
+    return <div className="text-center py-10 text-destructive">Pedido no encontrado.</div>;
   }
 
   const taxRate = 0.08; // Example
@@ -80,9 +80,9 @@ export default function OrderDetailPage({ params }: { params: { orderId: string 
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-foreground">订单详情</h1>
+        <h1 className="text-3xl font-bold text-foreground">Detalles del Pedido</h1>
         <Button variant="outline" asChild>
-          <Link href="/account/orders"><ArrowLeft className="mr-2 h-4 w-4" /> 返回订单列表</Link>
+          <Link href="/account/orders"><ArrowLeft className="mr-2 h-4 w-4" /> Volver a Pedidos</Link>
         </Button>
       </div>
 
@@ -90,10 +90,10 @@ export default function OrderDetailPage({ params }: { params: { orderId: string 
         <CardHeader className="bg-muted/30 dark:bg-card-foreground/5 p-6">
           <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
             <div>
-              <CardTitle className="text-2xl">订单 #{order.id.substring(3)}</CardTitle>
-              <CardDescription>下单时间: {new Date(order.createdAt).toLocaleString()}</CardDescription>
+              <CardTitle className="text-2xl">Pedido #{order.id.substring(3)}</CardTitle>
+              <CardDescription>Fecha del pedido: {new Date(order.createdAt).toLocaleString()}</CardDescription>
             </div>
-            <Badge variant={order.status === '已送达' || order.status === 'Picked Up' ? 'secondary' : order.status === '已取消' ? 'destructive' : 'default'} className="text-md px-3 py-1">
+            <Badge variant={order.status === 'Entregado' || order.status === 'Recogido' ? 'secondary' : order.status === 'Cancelado' ? 'destructive' : 'default'} className="text-md px-3 py-1">
               {order.status}
             </Badge>
           </div>
@@ -101,7 +101,7 @@ export default function OrderDetailPage({ params }: { params: { orderId: string 
         <CardContent className="p-6 space-y-6">
           {/* Items Ordered */}
           <section>
-            <h2 className="text-xl font-semibold mb-4 flex items-center"><ShoppingBag className="mr-2 h-5 w-5 text-primary"/> 订单商品</h2>
+            <h2 className="text-xl font-semibold mb-4 flex items-center"><ShoppingBag className="mr-2 h-5 w-5 text-primary"/> Artículos del Pedido</h2>
             <div className="space-y-4">
               {order.items.map(item => (
                 <div key={item.product.id} className="flex items-start gap-4 p-3 border rounded-md bg-background hover:bg-muted/50 transition-colors">
@@ -115,8 +115,8 @@ export default function OrderDetailPage({ params }: { params: { orderId: string 
                   />
                   <div className="flex-grow">
                     <Link href={`/products/${item.product.id}`} className="font-medium text-foreground hover:text-primary transition-colors">{item.product.name}</Link>
-                    <p className="text-sm text-muted-foreground">数量: {item.quantity}</p>
-                    <p className="text-sm text-muted-foreground">单价: ${item.product.price.toFixed(2)}</p>
+                    <p className="text-sm text-muted-foreground">Cantidad: {item.quantity}</p>
+                    <p className="text-sm text-muted-foreground">Precio unitario: ${item.product.price.toFixed(2)}</p>
                   </div>
                   <p className="text-md font-semibold text-foreground">${(item.product.price * item.quantity).toFixed(2)}</p>
                 </div>
@@ -130,19 +130,19 @@ export default function OrderDetailPage({ params }: { params: { orderId: string 
           <section>
              <h2 className="text-xl font-semibold mb-4 flex items-center">
                 {order.deliveryMethod === 'Local Delivery' ? <Truck className="mr-2 h-5 w-5 text-primary"/> : <Store className="mr-2 h-5 w-5 text-primary"/>}
-                {order.deliveryMethod === 'Local Delivery' ? '配送信息' : '取货信息'}
+                {order.deliveryMethod === 'Local Delivery' ? 'Información de Envío' : 'Información de Recogida'}
             </h2>
             {order.deliveryMethod === 'Local Delivery' && order.shippingAddress && (
               <div className="space-y-1 text-muted-foreground">
-                <p><span className="font-medium text-foreground">收货人:</span> {order.shippingAddress.fullName}</p>
-                <p><span className="font-medium text-foreground">地址:</span> {order.shippingAddress.street}, {order.shippingAddress.city}, {order.shippingAddress.postalCode}</p>
-                {order.shippingAddress.phoneNumber && <p><span className="font-medium text-foreground">电话:</span> {order.shippingAddress.phoneNumber}</p>}
+                <p><span className="font-medium text-foreground">Destinatario:</span> {order.shippingAddress.fullName}</p>
+                <p><span className="font-medium text-foreground">Dirección:</span> {order.shippingAddress.street}, {order.shippingAddress.city}, {order.shippingAddress.postalCode}</p>
+                {order.shippingAddress.phoneNumber && <p><span className="font-medium text-foreground">Teléfono:</span> {order.shippingAddress.phoneNumber}</p>}
               </div>
             )}
             {order.deliveryMethod === 'In-Store Pickup' && (
                <div className="space-y-1 text-muted-foreground">
-                <p><span className="font-medium text-foreground">取货地点:</span> {order.pickupLocation || 'ElectroLocal 总店'}</p>
-                <p className="text-sm">请在准备好取货通知后携带订单确认邮件前来取货。</p>
+                <p><span className="font-medium text-foreground">Lugar de recogida:</span> {order.pickupLocation || 'ElectroLocal Tienda Principal'}</p>
+                <p className="text-sm">Por favor, traiga la confirmación de su pedido por correo electrónico cuando venga a recogerlo después de recibir la notificación de que está listo.</p>
               </div>
             )}
           </section>
@@ -151,20 +151,20 @@ export default function OrderDetailPage({ params }: { params: { orderId: string 
 
           {/* Order Summary */}
           <section>
-            <h2 className="text-xl font-semibold mb-4">订单总计</h2>
+            <h2 className="text-xl font-semibold mb-4">Resumen del Pedido</h2>
             <div className="space-y-2">
-              <div className="flex justify-between text-muted-foreground"><span>小计:</span><span>${subtotal.toFixed(2)}</span></div>
-              <div className="flex justify-between text-muted-foreground"><span>运费:</span><span>${shippingCost.toFixed(2)}</span></div>
-              <div className="flex justify-between text-muted-foreground"><span>税费 ({(taxRate*100).toFixed(0)}%):</span><span>${taxAmount.toFixed(2)}</span></div>
+              <div className="flex justify-between text-muted-foreground"><span>Subtotal:</span><span>${subtotal.toFixed(2)}</span></div>
+              <div className="flex justify-between text-muted-foreground"><span>Envío:</span><span>${shippingCost.toFixed(2)}</span></div>
+              <div className="flex justify-between text-muted-foreground"><span>Impuestos ({(taxRate*100).toFixed(0)}%):</span><span>${taxAmount.toFixed(2)}</span></div>
               <Separator />
-              <div className="flex justify-between text-xl font-bold text-foreground"><span>总计:</span><span>${totalCalculated.toFixed(2)}</span></div>
+              <div className="flex justify-between text-xl font-bold text-foreground"><span>Total:</span><span>${totalCalculated.toFixed(2)}</span></div>
             </div>
           </section>
         </CardContent>
         <CardFooter className="bg-muted/30 dark:bg-card-foreground/5 p-6 flex justify-end gap-3">
-            <Button variant="outline">联系客服</Button>
-            {order.status === '配送中' && <Button>追踪包裹</Button>}
-            {(order.status === '已送达' || order.status === 'Picked Up') && <Button>再次购买</Button>}
+            <Button variant="outline">Contactar Soporte</Button>
+            {order.status === 'Enviado' && <Button>Rastrear Paquete</Button>}
+            {(order.status === 'Entregado' || order.status === 'Recogido') && <Button>Comprar de Nuevo</Button>}
         </CardFooter>
       </Card>
     </div>

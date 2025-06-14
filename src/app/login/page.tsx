@@ -18,7 +18,7 @@ export default function LoginPage() {
     event.preventDefault();
     setIsLoading(true);
     // Placeholder for Firebase login logic
-    console.log('Login attempt with:', { email, password });
+    console.log('Intento de inicio de sesión con:', { email, password });
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
     setIsLoading(false);
@@ -30,22 +30,22 @@ export default function LoginPage() {
       <Card className="w-full max-w-md shadow-2xl">
         <CardHeader className="text-center">
           <Logo className="justify-center mb-2" textSize="text-2xl" />
-          <CardTitle className="text-2xl font-bold tracking-tight">登录您的账户</CardTitle>
+          <CardTitle className="text-2xl font-bold tracking-tight">Inicia Sesión en tu Cuenta</CardTitle>
           <CardDescription>
-            没有账户？{' '}
+            ¿No tienes una cuenta?{' '}
             <Link href="/signup" className="font-medium text-primary hover:underline">
-              立即注册
+              Regístrate aquí
             </Link>
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="email">邮箱地址</Label>
+              <Label htmlFor="email">Correo Electrónico</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder="tu@ejemplo.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -54,9 +54,9 @@ export default function LoginPage() {
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">密码</Label>
+                <Label htmlFor="password">Contraseña</Label>
                 <Link href="#" className="text-sm font-medium text-primary hover:underline">
-                  忘记密码？
+                  ¿Olvidaste tu contraseña?
                 </Link>
               </div>
               <Input
@@ -69,7 +69,7 @@ export default function LoginPage() {
               />
             </div>
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? '正在登录...' : '登录'}
+              {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
             </Button>
           </form>
           <div className="relative my-6">
@@ -78,7 +78,7 @@ export default function LoginPage() {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
-                或使用其他方式登录
+                O inicia sesión con
               </span>
             </div>
           </div>
@@ -92,7 +92,7 @@ export default function LoginPage() {
           </div>
         </CardContent>
         <CardFooter className="text-center text-sm text-muted-foreground">
-          <p>继续操作即表示您同意我们的 <Link href="/terms" className="underline hover:text-primary">服务条款</Link> 和 <Link href="/privacy" className="underline hover:text-primary">隐私政策</Link>.</p>
+          <p>Al continuar, aceptas nuestros <Link href="/terms" className="underline hover:text-primary">Términos de Servicio</Link> y <Link href="/privacy" className="underline hover:text-primary">Política de Privacidad</Link>.</p>
         </CardFooter>
       </Card>
     </div>

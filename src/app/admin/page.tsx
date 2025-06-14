@@ -6,17 +6,17 @@ import { Bar, BarChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis, Toolti
 import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart'; // Assuming Chart components are set up
 
 const salesData = [
-  { month: '一月', sales: Math.floor(Math.random() * 5000) + 1000 },
-  { month: '二月', sales: Math.floor(Math.random() * 5000) + 1000 },
-  { month: '三月', sales: Math.floor(Math.random() * 5000) + 1000 },
-  { month: '四月', sales: Math.floor(Math.random() * 5000) + 1000 },
-  { month: '五月', sales: Math.floor(Math.random() * 5000) + 1000 },
-  { month: '六月', sales: Math.floor(Math.random() * 5000) + 1000 },
+  { month: 'Enero', sales: Math.floor(Math.random() * 5000) + 1000 }, // Changed from 一月
+  { month: 'Febrero', sales: Math.floor(Math.random() * 5000) + 1000 }, // Changed from 二月
+  { month: 'Marzo', sales: Math.floor(Math.random() * 5000) + 1000 }, // Changed from 三月
+  { month: 'Abril', sales: Math.floor(Math.random() * 5000) + 1000 }, // Changed from 四月
+  { month: 'Mayo', sales: Math.floor(Math.random() * 5000) + 1000 }, // Changed from 五月
+  { month: 'Junio', sales: Math.floor(Math.random() * 5000) + 1000 }, // Changed from 六月
 ];
 
 const chartConfig = {
   sales: {
-    label: "销售额",
+    label: "Ventas", // Changed from 销售额
     color: "hsl(var(--primary))",
   },
 };
@@ -25,48 +25,48 @@ const chartConfig = {
 export default function AdminDashboardPage() {
   return (
     <div className="space-y-8">
-      <h1 className="text-3xl font-bold text-foreground">管理仪表盘</h1>
+      <h1 className="text-3xl font-bold text-foreground">Panel de Administración</h1>
 
       {/* Summary Cards */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <Card className="shadow-lg hover:shadow-primary/20 transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">总收入</CardTitle>
+            <CardTitle className="text-sm font-medium">Ingresos Totales</CardTitle>
             <DollarSign className="h-5 w-5 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">$45,231.89</div>
-            <p className="text-xs text-muted-foreground">+20.1% 从上个月</p>
+            <p className="text-xs text-muted-foreground">+20.1% desde el mes pasado</p>
           </CardContent>
         </Card>
         <Card className="shadow-lg hover:shadow-primary/20 transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">总订单数</CardTitle>
+            <CardTitle className="text-sm font-medium">Pedidos Totales</CardTitle>
             <ListOrdered className="h-5 w-5 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">+2350</div>
-            <p className="text-xs text-muted-foreground">+180.1% 从上个月</p>
+            <p className="text-xs text-muted-foreground">+180.1% desde el mes pasado</p>
           </CardContent>
         </Card>
         <Card className="shadow-lg hover:shadow-primary/20 transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">产品数量</CardTitle>
+            <CardTitle className="text-sm font-medium">Cantidad de Productos</CardTitle>
             <Package className="h-5 w-5 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">1,258</div>
-            <p className="text-xs text-muted-foreground">+10 从上周</p>
+            <p className="text-xs text-muted-foreground">+10 desde la semana pasada</p>
           </CardContent>
         </Card>
         <Card className="shadow-lg hover:shadow-primary/20 transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">注册用户</CardTitle>
+            <CardTitle className="text-sm font-medium">Usuarios Registrados</CardTitle>
             <Users className="h-5 w-5 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">+573</div>
-            <p className="text-xs text-muted-foreground">+2 since yesterday</p>
+            <p className="text-xs text-muted-foreground">+2 desde ayer</p>
           </CardContent>
         </Card>
       </div>
@@ -74,8 +74,8 @@ export default function AdminDashboardPage() {
       {/* Sales Chart */}
       <Card className="shadow-xl">
         <CardHeader>
-          <CardTitle>销售趋势</CardTitle>
-          <CardDescription>过去 6 个月的销售额概览。</CardDescription>
+          <CardTitle>Tendencias de Ventas</CardTitle>
+          <CardDescription>Resumen de ventas de los últimos 6 meses.</CardDescription>
         </CardHeader>
         <CardContent>
           <ChartContainer config={chartConfig} className="h-[300px] w-full">
@@ -95,24 +95,24 @@ export default function AdminDashboardPage() {
       {/* Recent Activity (Placeholder) */}
       <Card className="shadow-lg">
         <CardHeader>
-          <CardTitle>最近活动</CardTitle>
+          <CardTitle>Actividad Reciente</CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="space-y-3">
             <li className="flex items-center text-sm">
               <Activity className="h-4 w-4 mr-2 text-primary" />
-              <span className="text-muted-foreground">新订单 <span className="font-semibold text-foreground">#ORD12350</span> 已创建。</span>
-              <span className="ml-auto text-xs text-muted-foreground">5 分钟前</span>
+              <span className="text-muted-foreground">Nuevo pedido <span className="font-semibold text-foreground">#ORD12350</span> creado.</span>
+              <span className="ml-auto text-xs text-muted-foreground">Hace 5 minutos</span>
             </li>
             <li className="flex items-center text-sm">
               <Users className="h-4 w-4 mr-2 text-primary" />
-              <span className="text-muted-foreground">新用户 <span className="font-semibold text-foreground">jane.doe@example.com</span> 已注册。</span>
-              <span className="ml-auto text-xs text-muted-foreground">1 小时前</span>
+              <span className="text-muted-foreground">Nuevo usuario <span className="font-semibold text-foreground">jane.doe@example.com</span> registrado.</span>
+              <span className="ml-auto text-xs text-muted-foreground">Hace 1 hora</span>
             </li>
              <li className="flex items-center text-sm">
               <Package className="h-4 w-4 mr-2 text-primary" />
-              <span className="text-muted-foreground">产品 <span className="font-semibold text-foreground">旗舰智能手机 X100</span> 库存已更新。</span>
-              <span className="ml-auto text-xs text-muted-foreground">3 小时前</span>
+              <span className="text-muted-foreground">Producto <span className="font-semibold text-foreground">Smartphone X100</span> inventario actualizado.</span>
+              <span className="ml-auto text-xs text-muted-foreground">Hace 3 horas</span>
             </li>
           </ul>
         </CardContent>

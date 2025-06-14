@@ -24,15 +24,15 @@ export default function GlobalError({
           <div className="mx-auto bg-destructive/10 p-3 rounded-full w-fit">
             <AlertTriangle className="h-10 w-10 text-destructive" />
           </div>
-          <CardTitle className="mt-4 text-2xl font-bold">哎呀！出错了</CardTitle>
+          <CardTitle className="mt-4 text-2xl font-bold">¡Ups! Algo salió mal</CardTitle>
           <CardDescription className="text-muted-foreground">
-            我们遇到了一些技术问题。请稍后再试。
+            Hemos encontrado un problema técnico. Por favor, inténtalo de nuevo más tarde.
           </CardDescription>
         </CardHeader>
         <CardContent>
           {process.env.NODE_ENV === 'development' && (
             <div className="bg-muted/50 p-3 rounded-md text-left text-sm mb-4">
-              <p className="font-semibold">错误信息:</p>
+              <p className="font-semibold">Mensaje de Error:</p>
               <pre className="whitespace-pre-wrap break-all">{error?.message}</pre>
               {error?.digest && <p className="mt-2"><span className="font-semibold">Digest:</span> {error.digest}</p>}
             </div>
@@ -45,11 +45,11 @@ export default function GlobalError({
             size="lg"
             className="w-full"
           >
-            再试一次
+            Intentar de Nuevo
           </Button>
           <p className="mt-4 text-sm">
             <Button variant="link" asChild>
-              <a href="/">返回首页</a>
+              <a href="/">Volver a la Página Principal</a>
             </Button>
           </p>
         </CardContent>

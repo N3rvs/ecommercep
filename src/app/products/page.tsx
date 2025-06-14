@@ -10,6 +10,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ListFilter, Search } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card';
+
 
 function ProductsPageContent() {
   const searchParams = useSearchParams();
@@ -61,15 +63,15 @@ function ProductsPageContent() {
   return (
     <div className="space-y-8">
       <div className="bg-muted/30 dark:bg-card p-6 rounded-lg shadow">
-        <h1 className="text-3xl font-bold text-foreground mb-2">我们的产品</h1>
-        <p className="text-muted-foreground">探索我们精选的最新电子产品。</p>
+        <h1 className="text-3xl font-bold text-foreground mb-2">Nuestros Productos</h1>
+        <p className="text-muted-foreground">Explore nuestra selección de los últimos productos electrónicos.</p>
       </div>
 
       <div className="flex flex-col md:flex-row gap-4 mb-8 p-4 border rounded-lg items-center">
         <div className="relative w-full md:flex-grow">
           <Input
             type="text"
-            placeholder="搜索产品..."
+            placeholder="Buscar productos..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="h-10 pl-10 w-full"
@@ -79,10 +81,10 @@ function ProductsPageContent() {
         <div className="flex gap-4 w-full md:w-auto">
           <Select value={selectedCategory} onValueChange={setSelectedCategory}>
             <SelectTrigger className="w-full md:w-[180px] h-10">
-              <SelectValue placeholder="选择类别" />
+              <SelectValue placeholder="Seleccionar Categoría" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">所有类别</SelectItem>
+              <SelectItem value="all">Todas las Categorías</SelectItem>
               {categoriesData.map((category) => (
                 <SelectItem key={category.id} value={category.slug}>
                   {category.name}
@@ -92,13 +94,13 @@ function ProductsPageContent() {
           </Select>
           <Select value={sortBy} onValueChange={setSortBy}>
             <SelectTrigger className="w-full md:w-[180px] h-10">
-              <SelectValue placeholder="排序方式" />
+              <SelectValue placeholder="Ordenar por" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="featured">特色优先</SelectItem>
-              <SelectItem value="price-asc">价格：从低到高</SelectItem>
-              <SelectItem value="price-desc">价格：从高到低</SelectItem>
-              <SelectItem value="name-asc">名称：A-Z</SelectItem>
+              <SelectItem value="featured">Destacados Primero</SelectItem>
+              <SelectItem value="price-asc">Precio: Bajo a Alto</SelectItem>
+              <SelectItem value="price-desc">Precio: Alto a Bajo</SelectItem>
+              <SelectItem value="name-asc">Nombre: A-Z</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -157,4 +159,3 @@ export default function ProductsPage() {
     </Suspense>
   );
 }
-

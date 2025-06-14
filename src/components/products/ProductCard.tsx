@@ -24,10 +24,10 @@ export default function ProductCard({ product }: ProductCardProps) {
             data-ai-hint={product.images[0].hint}
           />
           {product.featured && (
-            <Badge variant="default" className="absolute top-2 right-2 bg-primary text-primary-foreground">特色</Badge>
+            <Badge variant="default" className="absolute top-2 right-2 bg-primary text-primary-foreground">Destacado</Badge>
           )}
            {product.stock === 0 && (
-            <Badge variant="destructive" className="absolute top-2 left-2">缺货</Badge>
+            <Badge variant="destructive" className="absolute top-2 left-2">Agotado</Badge>
           )}
         </Link>
       </CardHeader>
@@ -42,19 +42,19 @@ export default function ProductCard({ product }: ProductCardProps) {
       </CardContent>
       <CardFooter className="p-4 border-t mt-auto">
         <div className="flex gap-2 w-full">
-          <Button asChild variant="outline" className="flex-1" aria-label={`View details for ${product.name}`}>
+          <Button asChild variant="outline" className="flex-1" aria-label={`Ver detalles de ${product.name}`}>
             <Link href={`/products/${product.id}`}>
-              <Eye className="mr-2 h-4 w-4" /> 查看详情
+              <Eye className="mr-2 h-4 w-4" /> Ver Detalles
             </Link>
           </Button>
           <Button 
             variant="default" 
             className="flex-1" 
             disabled={product.stock === 0}
-            aria-label={`Add ${product.name} to cart`}
+            aria-label={`Añadir ${product.name} al carrito`}
             // onClick={() => addToCart(product)} // Placeholder for add to cart functionality
           >
-            <ShoppingCart className="mr-2 h-4 w-4" /> {product.stock > 0 ? '加入购物车' : '缺货'}
+            <ShoppingCart className="mr-2 h-4 w-4" /> {product.stock > 0 ? 'Añadir al Carrito' : 'Agotado'}
           </Button>
         </div>
       </CardFooter>

@@ -30,7 +30,7 @@ export interface Order {
   userId: string; // Assuming Firebase UID
   items: CartItem[];
   totalAmount: number;
-  status: 'Pending' | 'Processing' | 'Shipped' | 'Delivered' | 'Picked Up' | 'Cancelled';
+  status: 'Pendiente' | 'Procesando' | 'Enviado' | 'Entregado' | 'Recogido' | 'Cancelado'; // Translated from Chinese options
   deliveryMethod: 'Local Delivery' | 'In-Store Pickup';
   shippingAddress?: {
     fullName: string;

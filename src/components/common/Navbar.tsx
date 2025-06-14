@@ -45,8 +45,8 @@ export default function Navbar() {
 
         <div className="flex items-center space-x-3">
           <div className="hidden md:flex items-center space-x-2">
-            <Input type="search" placeholder="搜索产品..." className="h-9 w-40 lg:w-64" />
-            <Button variant="ghost" size="icon" aria-label="Search">
+            <Input type="search" placeholder="Buscar productos..." className="h-9 w-40 lg:w-64" />
+            <Button variant="ghost" size="icon" aria-label="Buscar">
               <Search className="h-5 w-5" />
             </Button>
           </div>
@@ -55,13 +55,13 @@ export default function Navbar() {
           
           {isAuthenticated ? (
             <Link href="/account">
-              <Button variant="ghost" size="icon" aria-label="My Account">
+              <Button variant="ghost" size="icon" aria-label="Mi Cuenta">
                 <User className="h-5 w-5" />
               </Button>
             </Link>
           ) : (
             <Link href="/login">
-              <Button variant="outline" size="sm">登录</Button>
+              <Button variant="outline" size="sm">Iniciar Sesión</Button>
             </Link>
           )}
 
@@ -69,19 +69,19 @@ export default function Navbar() {
           {/* Mobile Menu Trigger */}
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon" aria-label="Open menu">
+              <Button variant="ghost" size="icon" aria-label="Abrir menú">
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-full max-w-xs p-6 bg-background">
               <div className="flex justify-between items-center mb-6">
                 <Logo textSize="text-lg" />
-                <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)} aria-label="Close menu">
+                <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)} aria-label="Cerrar menú">
                   <X className="h-6 w-6" />
                 </Button>
               </div>
               <div className="relative mb-4">
-                <Input type="search" placeholder="搜索产品..." className="h-10 pr-10 w-full" />
+                <Input type="search" placeholder="Buscar productos..." className="h-10 pr-10 w-full" />
                 <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               </div>
               <nav className="flex flex-col space-y-3">
@@ -90,11 +90,11 @@ export default function Navbar() {
                 {isAuthenticated && isAdmin && renderNavLinks(adminNavItems, () => setIsMobileMenuOpen(false))}
                  {isAuthenticated ? (
                     <Link href="/login" onClick={() => { /* handle logout */ setIsMobileMenuOpen(false); }}>
-                        <Button variant="ghost" className="w-full justify-start">退出</Button>
+                        <Button variant="ghost" className="w-full justify-start">Cerrar Sesión</Button>
                     </Link>
                  ) : (
                     <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>
-                        <Button variant="default" className="w-full">登录 / 注册</Button>
+                        <Button variant="default" className="w-full">Iniciar Sesión / Registrarse</Button>
                     </Link>
                  )}
               </nav>

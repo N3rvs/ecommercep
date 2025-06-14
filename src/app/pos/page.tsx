@@ -78,10 +78,10 @@ export default function POSPage() {
   const handlePayment = () => {
     // Placeholder for payment processing and ticket generation
     if (cart.length === 0) {
-        alert("购物车是空的！");
+        alert("¡El carrito está vacío!"); // Changed from 购物车是空的！
         return;
     }
-    alert(`总金额: $${total.toFixed(2)}\n正在生成小票...`);
+    alert(`Monto Total: $${total.toFixed(2)}\nGenerando recibo...`); // Changed from 总金额: $${total.toFixed(2)}\n正在生成小票...
     // Here you would integrate with a payment gateway and/or print a receipt
     setCart([]); // Clear cart after payment
   };
@@ -91,12 +91,12 @@ export default function POSPage() {
       {/* Left Panel: Product Search & Selection */}
       <Card className="flex-1 md:flex-[2] flex flex-col shadow-lg">
         <CardHeader className="border-b p-4">
-          <CardTitle className="text-xl">产品选择</CardTitle>
+          <CardTitle className="text-xl">Selección de Producto</CardTitle>
           <div className="relative mt-2">
             <Input
               ref={searchInputRef}
               type="text"
-              placeholder="按名称或 SKU 搜索产品..."
+              placeholder="Buscar por nombre o SKU..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10 h-10"
@@ -118,7 +118,7 @@ export default function POSPage() {
                       <Image src={product.images[0].url} alt={product.name} width={40} height={40} className="rounded mr-3 aspect-square object-cover" data-ai-hint={product.images[0].hint} />
                       <div className="flex-grow">
                         <p className="font-medium text-sm">{product.name}</p>
-                        <p className="text-xs text-muted-foreground">SKU: {product.id} | 库存: {product.stock}</p>
+                        <p className="text-xs text-muted-foreground">SKU: {product.id} | Stock: {product.stock}</p>
                       </div>
                       <p className="text-sm font-semibold text-primary">${product.price.toFixed(2)}</p>
                     </Button>
@@ -127,10 +127,10 @@ export default function POSPage() {
               </ul>
             )}
             {searchTerm && searchResults.length === 0 && (
-                <p className="p-4 text-center text-muted-foreground">未找到产品。</p>
+                <p className="p-4 text-center text-muted-foreground">Producto no encontrado.</p>
             )}
             {!searchTerm && (
-                <p className="p-4 text-center text-muted-foreground">输入以搜索产品。</p>
+                <p className="p-4 text-center text-muted-foreground">Ingrese para buscar productos.</p>
             )}
           </ScrollArea>
         </CardContent>
@@ -140,21 +140,21 @@ export default function POSPage() {
       <Card className="flex-1 md:flex-[3] flex flex-col shadow-lg">
         <CardHeader className="border-b p-4">
           <CardTitle className="text-xl flex justify-between items-center">
-            当前订单
-            {cart.length > 0 && <Button variant="outline" size="sm" onClick={() => setCart([])} className="text-destructive hover:text-destructive"><X className="mr-1 h-4 w-4"/>清空购物车</Button>}
+            Pedido Actual
+            {cart.length > 0 && <Button variant="outline" size="sm" onClick={() => setCart([])} className="text-destructive hover:text-destructive"><X className="mr-1 h-4 w-4"/>Limpiar Carrito</Button>}
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0 flex-grow overflow-hidden">
           <ScrollArea className="h-full">
             {cart.length === 0 ? (
-              <p className="p-8 text-center text-muted-foreground">购物车是空的。请从左侧添加产品。</p>
+              <p className="p-8 text-center text-muted-foreground">El carrito está vacío. Añada productos desde la izquierda.</p>
             ) : (
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="w-[60%]">产品</TableHead>
-                    <TableHead className="text-center w-[15%]">数量</TableHead>
-                    <TableHead className="text-right w-[20%]">价格</TableHead>
+                    <TableHead className="w-[60%]">Producto</TableHead>
+                    <TableHead className="text-center w-[15%]">Cantidad</TableHead>
+                    <TableHead className="text-right w-[20%]">Precio</TableHead>
                     <TableHead className="w-[5%]"></TableHead>
                   </TableRow>
                 </TableHeader>
@@ -191,23 +191,23 @@ export default function POSPage() {
         </CardContent>
         <CardFooter className="border-t p-4 space-y-3 flex-col items-stretch">
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">小计:</span>
+            <span className="text-muted-foreground">Subtotal:</span>
             <span className="font-medium">${subtotal.toFixed(2)}</span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">税费 ({(taxRate * 100).toFixed(0)}%):</span>
+            <span className="text-muted-foreground">Impuestos ({(taxRate * 100).toFixed(0)}%):</span>
             <span className="font-medium">${taxAmount.toFixed(2)}</span>
           </div>
           <div className="flex justify-between text-xl font-bold text-primary">
-            <span>总计:</span>
+            <span>Total:</span>
             <span>${total.toFixed(2)}</span>
           </div>
           <div className="flex gap-2 mt-2">
             <Button size="lg" className="flex-1" onClick={handlePayment} disabled={cart.length === 0}>
-              <DollarSign className="mr-2 h-5 w-5" /> 支付
+              <DollarSign className="mr-2 h-5 w-5" /> Pagar
             </Button>
-            <Button size="lg" variant="outline" className="flex-1" onClick={() => alert('打印小票功能待实现')} disabled={cart.length === 0}>
-              <Printer className="mr-2 h-5 w-5" /> 打印小票
+            <Button size="lg" variant="outline" className="flex-1" onClick={() => alert('Función de imprimir recibo por implementar')} disabled={cart.length === 0}> {/* Changed from 打印小票功能待实现 */}
+              <Printer className="mr-2 h-5 w-5" /> Imprimir Recibo
             </Button>
           </div>
         </CardFooter>
