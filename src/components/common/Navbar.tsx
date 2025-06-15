@@ -9,12 +9,13 @@ import { Menu, Search, ShoppingCart, User, X } from 'lucide-react';
 import { Logo } from '@/components/icons/Logo';
 import { mainNavItems, userNavItems, adminNavItems } from '@/lib/data'; // Assuming admin items are separate or conditional
 import type { NavItem } from '@/lib/types';
+import { ThemeToggle } from './ThemeToggle';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   // Placeholder for authentication status and admin role
-  const isAuthenticated = true; // Changed for demonstration
-  const isAdmin = true; // Changed for demonstration
+  const isAuthenticated = true; 
+  const isAdmin = true; 
 
   const renderNavLinks = (items: NavItem[], closeMenu?: () => void) =>
     items.filter(item => {
@@ -43,7 +44,7 @@ export default function Navbar() {
           {isAuthenticated && isAdmin && renderNavLinks(adminNavItems.filter(item => mainNavItems.every(mainItem => mainItem.href !== item.href)))}
         </nav>
 
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-1 md:space-x-3">
           <div className="hidden md:flex items-center space-x-2">
             <Input type="search" placeholder="Buscar productos..." className="h-9 w-40 lg:w-64" />
             <Button variant="ghost" size="icon" aria-label="Buscar">
@@ -64,6 +65,8 @@ export default function Navbar() {
               <Button variant="outline" size="sm">Iniciar Sesión</Button>
             </Link>
           )}
+          
+          <ThemeToggle />
 
 
           {/* Mobile Menu Trigger */}
