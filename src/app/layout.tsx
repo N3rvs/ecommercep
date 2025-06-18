@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'ElectroLocal',
   description: 'Your local hub for the latest electronics.',
   icons: {
-    icon: '/favicon.ico', // Placeholder, assuming favicon might be added later
+    // icon: '/favicon.ico',
   },
 };
 
